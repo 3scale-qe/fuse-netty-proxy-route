@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: fuse75-spring-boot-javadsl
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: fuse75-spring-boot-javadsl@sha256:e7c8e7103d77d965eea971ebfc19260fcb33a6643aba53decae0379ddff25364
+        namespace: jsmolar-netty
+      name: com.redhat.camelProxyJavaDSL

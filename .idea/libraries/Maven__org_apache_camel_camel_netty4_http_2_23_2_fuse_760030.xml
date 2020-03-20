@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.camel:camel-netty4-http:2.23.2.fuse-760030">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-netty4-http/2.23.2.fuse-760030/camel-netty4-http-2.23.2.fuse-760030.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-netty4-http/2.23.2.fuse-760030/camel-netty4-http-2.23.2.fuse-760030-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-netty4-http/2.23.2.fuse-760030/camel-netty4-http-2.23.2.fuse-760030-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
