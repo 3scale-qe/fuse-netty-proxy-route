@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.redhat.camelProxyJavaDSL</groupId>
-    <artifactId>fuse75-spring-boot-javaDSL</artifactId>
+    <artifactId>fuse-netty-proxy</artifactId>
     <version>com.redhat.camelProxyJavaDSL</version>
 
     <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel</name>
@@ -20,6 +20,11 @@
         <!-- maven plugin versions -->
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+
+<!--        <fabric8.service.port>proxy</fabric8.service.port>-->
+<!--        <fabric8.service.port.proxy>8088</fabric8.service.port.proxy>-->
+<!--        <fabric8.service.protocol.proxy>TCP</fabric8.service.protocol.proxy>-->
+<!--        <fabric8.service.containerPort.proxy>8088</fabric8.service.containerPort.proxy>-->
     </properties>
 
     <dependencyManagement>
@@ -117,7 +122,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

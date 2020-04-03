@@ -6,21 +6,20 @@
     "kind" : "Service",
     "metadata" : {
       "annotations" : {
+        "fabric8.io/git-commit" : "f0b4dfc2cae5e12ccbede4a075c894d33a50ad0d",
         "fabric8.io/iconUrl" : "img/icons/camel.svg",
+        "fabric8.io/git-branch" : "master",
         "prometheus.io/scrape" : "true",
-        "fabric8.io/scm-con-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-        "fabric8.io/scm-devcon-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-        "fabric8.io/scm-tag" : "master",
         "prometheus.io/port" : "9779"
       },
       "labels" : {
         "expose" : "true",
-        "app" : "fuse75-spring-boot-javaDSL",
+        "app" : "fuse-netty-proxy",
         "provider" : "fabric8",
         "version" : "com.redhat.camelProxyJavaDSL",
         "group" : "com.redhat.camelProxyJavaDSL"
       },
-      "name" : "fuse75-spring-boot-javadsl"
+      "name" : "fuse-netty-proxy"
     },
     "spec" : {
       "ports" : [ {
@@ -28,9 +27,14 @@
         "port" : 8080,
         "protocol" : "TCP",
         "targetPort" : 8080
+      }, {
+        "name" : "proxy",
+        "port" : 8088,
+        "protocol" : "TCP",
+        "targetPort" : 8088
       } ],
       "selector" : {
-        "app" : "fuse75-spring-boot-javaDSL",
+        "app" : "fuse-netty-proxy",
         "provider" : "fabric8",
         "group" : "com.redhat.camelProxyJavaDSL"
       }
@@ -40,25 +44,24 @@
     "kind" : "DeploymentConfig",
     "metadata" : {
       "annotations" : {
+        "fabric8.io/git-commit" : "f0b4dfc2cae5e12ccbede4a075c894d33a50ad0d",
         "fabric8.io/iconUrl" : "img/icons/camel.svg",
-        "fabric8.io/metrics-path" : "dashboard/file/camel-routes.json/?var-project=fuse75-spring-boot-javaDSL&var-version=com.redhat.camelProxyJavaDSL",
-        "fabric8.io/scm-con-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-        "fabric8.io/scm-devcon-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-        "fabric8.io/scm-tag" : "master"
+        "fabric8.io/git-branch" : "master",
+        "fabric8.io/metrics-path" : "dashboard/file/camel-routes.json/?var-project=fuse-netty-proxy&var-version=com.redhat.camelProxyJavaDSL"
       },
       "labels" : {
-        "app" : "fuse75-spring-boot-javaDSL",
+        "app" : "fuse-netty-proxy",
         "provider" : "fabric8",
         "version" : "com.redhat.camelProxyJavaDSL",
         "group" : "com.redhat.camelProxyJavaDSL"
       },
-      "name" : "fuse75-spring-boot-javadsl"
+      "name" : "fuse-netty-proxy"
     },
     "spec" : {
       "replicas" : 1,
       "revisionHistoryLimit" : 2,
       "selector" : {
-        "app" : "fuse75-spring-boot-javaDSL",
+        "app" : "fuse-netty-proxy",
         "provider" : "fabric8",
         "group" : "com.redhat.camelProxyJavaDSL"
       },
@@ -71,14 +74,13 @@
       "template" : {
         "metadata" : {
           "annotations" : {
+            "fabric8.io/git-commit" : "f0b4dfc2cae5e12ccbede4a075c894d33a50ad0d",
             "fabric8.io/iconUrl" : "img/icons/camel.svg",
-            "fabric8.io/metrics-path" : "dashboard/file/camel-routes.json/?var-project=fuse75-spring-boot-javaDSL&var-version=com.redhat.camelProxyJavaDSL",
-            "fabric8.io/scm-con-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-            "fabric8.io/scm-devcon-url" : "scm:git:git@github.com:jboss-fuse/redhat-fuse.git",
-            "fabric8.io/scm-tag" : "master"
+            "fabric8.io/git-branch" : "master",
+            "fabric8.io/metrics-path" : "dashboard/file/camel-routes.json/?var-project=fuse-netty-proxy&var-version=com.redhat.camelProxyJavaDSL"
           },
           "labels" : {
-            "app" : "fuse75-spring-boot-javaDSL",
+            "app" : "fuse-netty-proxy",
             "provider" : "fabric8",
             "version" : "com.redhat.camelProxyJavaDSL",
             "group" : "com.redhat.camelProxyJavaDSL"
@@ -97,7 +99,7 @@
                 }
               }
             } ],
-            "image" : "fuse75-spring-boot-javadsl:com.redhat.camelProxyJavaDSL",
+            "image" : "fuse-netty-proxy:com.redhat.camelProxyJavaDSL",
             "imagePullPolicy" : "IfNotPresent",
             "livenessProbe" : {
               "httpGet" : {
@@ -153,7 +155,7 @@
           "containerNames" : [ "spring-boot" ],
           "from" : {
             "kind" : "ImageStreamTag",
-            "name" : "fuse75-spring-boot-javadsl:com.redhat.camelProxyJavaDSL"
+            "name" : "fuse-netty-proxy:com.redhat.camelProxyJavaDSL"
           }
         },
         "type" : "ImageChange"
@@ -165,12 +167,12 @@
     "metadata" : {
       "labels" : {
         "expose" : "true",
-        "app" : "fuse75-spring-boot-javaDSL",
+        "app" : "fuse-netty-proxy",
         "provider" : "fabric8",
         "version" : "com.redhat.camelProxyJavaDSL",
         "group" : "com.redhat.camelProxyJavaDSL"
       },
-      "name" : "fuse75-spring-boot-javadsl"
+      "name" : "fuse-netty-proxy"
     },
     "spec" : {
       "port" : {
@@ -178,7 +180,7 @@
       },
       "to" : {
         "kind" : "Service",
-        "name" : "fuse75-spring-boot-javadsl"
+        "name" : "fuse-netty-proxy"
       }
     }
   } ]

@@ -36,6 +36,7 @@ public class Application extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("netty4-http:proxy://0.0.0.0:8088")
+                .process(Application::uppercase)
                 .toD("netty4-http:"
                         + "${headers." + Exchange.HTTP_SCHEME + "}://"
                         + "${headers." + Exchange.HTTP_HOST + "}:"
@@ -45,10 +46,10 @@ public class Application extends RouteBuilder {
     }
 
     public static void uppercase(final Exchange exchange) {
-        System.out.println("blah");
         final Message message = exchange.getIn();
         final String body = message.getBody(String.class);
-        message.setBody(body.toUpperCase(Locale.US));
+        message.setHeader("Fuse-Camel-Proxy", "Request was redirected to Camel netty4 proxy service");
+        message.setBody(body);
         System.out.println(body);
     }
 }
