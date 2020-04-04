@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.redhat.camelProxyJavaDSL</groupId>
-    <artifactId>fuse-netty-proxy</artifactId>
+    <artifactId>fuse-camel-proxy</artifactId>
     <version>com.redhat.camelProxyJavaDSL</version>
 
     <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel</name>
