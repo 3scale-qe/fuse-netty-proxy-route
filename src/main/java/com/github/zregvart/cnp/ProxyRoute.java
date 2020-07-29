@@ -18,7 +18,9 @@ package com.github.zregvart.cnp;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
@@ -30,15 +32,13 @@ public class ProxyRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         final RouteDefinition from;
-        if (Files.exists(Path.of("/tls", "keystore.jks"))) {
-            from = from("netty-http:proxy://0.0.0.0:8443?ssl=true&keyStoreFile=/tls/keystore.jks&passphrase=changeit&trustStoreFile=/tls/keystore.jks");
-        } else {
-            from = from("netty-http:proxy://0.0.0.0:8080");
-        }
+
+
+        from = from("netty4-http:proxy://0.0.0.0:8443?ssl=true&keyStoreFile=/tls/keystore.jks&passphrase=changeit&trustStoreFile=/tls/keystore.jks");
 
         from
             .process(ProxyRoute::uppercase)
-            .toD("netty-http:"
+            .toD("netty4-http:"
                 + "${headers." + Exchange.HTTP_SCHEME + "}://"
                 + "${headers." + Exchange.HTTP_HOST + "}:"
                 + "${headers." + Exchange.HTTP_PORT + "}"
