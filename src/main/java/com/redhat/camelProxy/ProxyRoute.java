@@ -13,40 +13,44 @@
  *  implied.  See the License for the specific language governing
  *  permissions and limitations under the License.
  */
-package com.redhat.camelProxyJavaDSL;
+package com.redhat.camelProxy;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.RouteDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Locale;
 
 /**
  * A spring-boot application that includes a Camel route builder to setup the Camel routes
  */
 @SpringBootApplication
-public class Application extends RouteBuilder {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+public class ProxyRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("netty4-http:proxy://0.0.0.0:8088")
-                .process(Application::saveHostHeader)
-                .process(Application::uppercase)
+        final RouteDefinition route =
+                from("netty4-http:proxy://0.0.0.0:8088");
+        createRoute(route);
+
+        final RouteDefinition routeTLS =
+                from("netty4-http:proxy://0.0.0.0:8443?ssl=true&keyStoreFile=keystore.jks&passphrase=changeit&trustStoreFile=keystore.jks");
+        createRoute(routeTLS);
+    }
+
+    private void createRoute(RouteDefinition route) {
+        route.process(ProxyRoute::saveHostHeader)
+                .process(ProxyRoute::addCustomHeader)
                 .toD("netty4-http:"
                         + "${headers." + Exchange.HTTP_SCHEME + "}://"
                         + "${headers." + Exchange.HTTP_HOST + "}:"
                         + "${headers." + Exchange.HTTP_PORT + "}"
                         + "${headers." + Exchange.HTTP_PATH + "}")
-                .process(Application::uppercase);
+                .process(ProxyRoute::addCustomHeader);
     }
 
-    public static void uppercase(final Exchange exchange) {
+    private static void addCustomHeader(final Exchange exchange) {
         final Message message = exchange.getIn();
         final String body = message.getBody(String.class);
         System.out.println("HEADERS: " + message.getHeaders());
@@ -55,7 +59,7 @@ public class Application extends RouteBuilder {
         System.out.println(body);
     }
 
-    public static void saveHostHeader(final Exchange exchange) {
+    private static void saveHostHeader(final Exchange exchange) {
         final Message message = exchange.getIn();
         System.out.println("HEADERS: " + message.getHeaders());
         String hostHeader = message.getHeader("Host", String.class);
