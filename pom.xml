@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- configure the Fuse version you want to use here -->
-        <fuse.bom.version>7.9.0.fuse-sb2-790004</fuse.bom.version>
+        <fuse.bom.version>7.9.0.fuse-sb2-790051</fuse.bom.version>
 
         <!-- maven plugin versions -->
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -30,19 +30,6 @@
                 <version>${fuse.bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.apache.camel</groupId> &lt;!&ndash; Exclude Project-E from Project-B &ndash;&gt;-->
-<!--                        <artifactId>camel-netty4-http</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
-
-<!--            <dependency>-->
-<!--                <groupId>org.apache.camel</groupId>-->
-<!--                <artifactId>camel-netty4-http</artifactId>-->
-<!--                <version>2.23.2.fuse-770010</version>-->
-<!--                <scope>runtime</scope>-->
             </dependency>
         </dependencies>
     </dependencyManagement>
