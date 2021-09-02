@@ -34,7 +34,8 @@ public class ProxyRoute extends RouteBuilder {
         createRoute(route);
 
         final RouteDefinition routeTLS =
-                from("netty4-http:proxy://0.0.0.0:8443?ssl=true&keyStoreFile=keystore.jks&passphrase=changeit&trustStoreFile=keystore.jks");
+                from("netty4-http:proxy://0.0.0.0:8443?ssl=true&keyStoreFile=keystore.jks&" +
+                        "passphrase=changeit&trustStoreFile=keystore.jks");
         createRoute(routeTLS);
     }
 

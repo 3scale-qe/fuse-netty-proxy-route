@@ -120,6 +120,30 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.redhat-fuse</groupId>
+                        <artifactId>openshift-maven-plugin</artifactId>
+                        <version>${fuse.bom.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>resource</goal>
+                                    <goal>build</goal>
+                                    <goal>apply</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <repositories>
         <repository>
             <id>redhat-ga</id>
