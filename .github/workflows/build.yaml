@@ -10,6 +10,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '8'
+          distribution: temurin
       - run: mvn --batch-mode --update-snapshots package
       - uses: docker/setup-qemu-action@master
         with:
