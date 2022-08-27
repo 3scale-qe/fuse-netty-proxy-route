@@ -6,6 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: temurin
+      - run: mvn --batch-mode --update-snapshots package
       - uses: docker/setup-qemu-action@master
         with:
           platforms: ppc64le,s390x
