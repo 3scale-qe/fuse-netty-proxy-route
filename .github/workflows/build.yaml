@@ -26,4 +26,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/ppc64le,linux/s390x
           tags: ghcr.io/${{ github.repository }}
-          push: false
+          push: true
