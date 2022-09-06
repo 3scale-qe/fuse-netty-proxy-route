@@ -12,6 +12,14 @@ jobs:
           java-version: '8'
           distribution: temurin
       - run: mvn --batch-mode --update-snapshots package
+      - uses: docker/metadata-action@v4
+        id: metadata
+        with:
+          images: |
+            ghcr.io/${{ github.repository }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha
       - uses: docker/setup-qemu-action@master
         with:
           platforms: ppc64le,s390x
@@ -25,5 +33,5 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/ppc64le,linux/s390x
-          tags: ghcr.io/${{ github.repository }}
+          tags: ${{ steps.meta.outputs.tags }}
           push: true
