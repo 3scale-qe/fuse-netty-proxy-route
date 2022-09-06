@@ -33,5 +33,5 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/ppc64le,linux/s390x
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.metadata.outputs.tags }}
           push: true
